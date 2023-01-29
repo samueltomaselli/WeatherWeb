@@ -1,4 +1,3 @@
-import process from "process";
 import { useState } from "react";
 import { FaSearch, FaWind } from "react-icons/fa";
 import { GiDrop } from "react-icons/gi";
@@ -51,11 +50,11 @@ function App() {
   };
 
   return (
-    <div className="h-screen flex justify-center items-center bg-gradient-to-b from-sky-400 to-sky-200 p-5 max-sm:p-0">
-      <div className="w-[600px] h-[550px] max-md:w-5/6  flex flex-col justify-between gap-5 bg-gray-800 rounded-lg bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 p-10 max-sm:p-5">
+    <div className="h-screen font-primary flex justify-center items-center bg-gradient-to-b from-sky-400 to-sky-200 p-5 max-sm:p-0">
+      <div className="w-[600px] h-[550px] max-md:w-5/6 flex flex-col justify-between gap-5 bg-gray-800 rounded-lg bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 p-10 max-sm:p-5">
         <div className="w-full flex flex-col items-center gap-5">
-          <h1 className="text-3xl text-white font-bold flex gap-2 justify-center items-center">
-            <TiWeatherPartlySunny className="text-5xl" />
+          <h1 className="text-3xl text-white font-bold flex gap-2 justify-center items-center max-sm:text-2xl">
+            <TiWeatherPartlySunny className="text-5xl max-sm:text-4xl" />
             <div>
               <span className="text-sky-700">Weather</span>Web
             </div>
@@ -70,10 +69,12 @@ function App() {
           </div>
           <div className="text-6xl font-bold text-sky-700"> {data.main?.temp ? data.main.temp.toFixed() : "0"} °C</div>
           <div className="flex justify-center items-center">
-            <h4 className="text-xl font-semibold text-white">{data.weather?.[0]?.description ? data.weather[0].description.toUpperCase() : "CLIMA"}</h4>
+            <h4 className="text-2xl font-bold text-white">
+              {data.weather?.[0]?.description ? data.weather[0].description.charAt(0).toUpperCase() + data.weather[0].description.slice(1) : "Clima"}
+            </h4>
             {data.weather?.[0].icon ? <img src={`https://openweathermap.org/img/wn/${data.weather?.[0].icon}.png`} /> : <img src={`https://openweathermap.org/img/wn/03d.png`} />}
           </div>
-          <div className="flex gap-20 text-xl text-white">
+          <div className="flex gap-20 text-xl text-white font-semibold">
             <div className="flex justify-center items-center gap-2">
               <GiDrop className="text-sky-700" />
               {data.main?.humidity ? data.main?.humidity : ""}%
